@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     String search;
@@ -22,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle extra = getIntent().getExtras();
         if (extra == null){
+            //disable button
+            //https://stackoverflow.com/questions/5019857/how-to-set-a-button-gray-and-unclickable
             next.setEnabled(false);
             next.setBackgroundColor(0xFFAFA8A0);
         }else{
+            //Pass values between activities
+            //https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application
             search = extra.getString("SEARCH");
             next.setEnabled(true);
             line.setText(search);
@@ -43,9 +49,17 @@ public class MainActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Troll.class);
-                intent.putExtra("SEARCH",search);
-                startActivity(intent);
+                Random rand = new Random();
+                int choice = rand.nextInt(3);
+                if (choice ==0) {
+                    Intent intent = new Intent(MainActivity.this, Troll.class);
+                    intent.putExtra("SEARCH", search);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, Dictionary.class);
+                    intent.putExtra("SEARCH", search);
+                    startActivity(intent);
+                }
             }
         });
 

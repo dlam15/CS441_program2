@@ -24,9 +24,11 @@ public class Dictionary extends AppCompatActivity {
             search = extra.getString("SEARCH");
         }
 
+        //Does a websearch in the app for the video
+        //https://developer.android.com/guide/webapps/webview
+        //https://www.youtube.com/watch?v=TUXui5ItBkM
         WebView myWebView = (WebView) findViewById(R.id.webview2);
-        myWebView.setWebViewClient(new WebViewClient());
-        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setWebViewClient(new WebViewClient()); //needed to keep the websearch in the app
         myWebView.loadUrl("https://www.dictionary.com/browse/"+search);
 
         back.setOnClickListener(new View.OnClickListener() {

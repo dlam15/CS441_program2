@@ -16,13 +16,16 @@ public class Popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
+        //Creates a pop up window
+        //https://www.youtube.com/watch?v=fn5OlqQuOCk
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
-
         int width = display.widthPixels;
         int height = display.heightPixels;
-
         getWindow().setLayout((int)(width*.6),(int)(height*.2));
+        //This would change the size of the layout and keep it centered
+        //To change the x,y position maybe use setAttributes()
+
 
         Button enter = (Button) findViewById(R.id.enterBtn);
         EditText search = (EditText) findViewById(R.id.editSearch);
